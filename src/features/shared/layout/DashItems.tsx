@@ -1,6 +1,5 @@
 import { useLocation } from 'solid-app-router';
 import { Component, createSignal, For, Show } from 'solid-js';
-import { dashRoutes } from '../../../config/dashRoutes';
 import SideBarItem from '../../../molecules/SideBarItem';
 import SideBarSubItem from '../../../molecules/SideBarSubItem';
 
@@ -11,6 +10,7 @@ const isEqualPath = ( { locationPath, itemPath }: {locationPath: string; itemPat
 
 type DashItemsProps = {
     expanded: boolean;
+    dashRoutes: any[];
 };
 
 const DashItems: Component<DashItemsProps> = ( props ) =>
@@ -26,7 +26,7 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
     };
 
     return (
-        <For each={dashRoutes}>
+        <For each={props.dashRoutes}>
             {( dashRoute: any ) =>
                 <SideBarItem
                     name={dashRoute.name as string}
