@@ -61,7 +61,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                         <ExpandButton  getExpanded={getExpanded()} setExpanded={setExpanded} />
                         <div class="flex flex-col h-full justify-between pb-5">
                             <div classList={{ 'mt-8': !getExpanded() }}>
-                                <DashItems expanded={getExpanded()} dashRoutes={mappedCategories()}/>
+                                <DashItems expanded={getExpanded()} dashRoutes={mappedCategories() as any}/>
 
                             </div>
                         </div>
@@ -71,7 +71,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                 <div class="grid-in-sidebar absolute md:hidden mt-20 md:m-4 z-50 ">
                     <Show when={showSidebar()} >
                         <SideBar class="relative ml-5 dg-rounded min-h-80vh py-5 w-48" getExpanded={true}>
-                            <DashItems expanded={true} dashRoutes={mappedCategories()} />
+                            <DashItems expanded={true} dashRoutes={mappedCategories() as any} />
                         </SideBar>
                     </Show>
                 </div>
