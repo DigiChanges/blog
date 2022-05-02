@@ -5,7 +5,6 @@ import IconBurger from '../../../atoms/Icons/Stroke/IconBurger';
 import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
 import IconCross from '../../../atoms/Icons/Stroke/IconCross';
 import Image from '../../../atoms/Image';
-import { useApplicationContext } from '../../../context/context';
 import LanguageMenu from '../../language/LanguageMenu';
 
 interface NavbarTemplatePRops {
@@ -17,7 +16,6 @@ interface NavbarTemplatePRops {
 
 const NavBar: Component<NavbarTemplatePRops> = props =>
 {
-    const [ user ] = useApplicationContext();
     const [ getToggledDrop, setToggleDrop ] = createSignal( false );
 
     return (

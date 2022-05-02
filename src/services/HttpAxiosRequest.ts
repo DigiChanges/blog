@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { useApplicationContext } from '../context/context';
 
 const HTTP_SUCCESS_STATUS = [ 200, 201, 204, 300, 302, 304 ];
 const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
@@ -13,8 +12,8 @@ export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any 
 {
     if ( !dataUser )
     {
-        const [ user ]: any = useApplicationContext();
-        dataUser = user();
+        // const [ user ]: any = useApplicationContext();
+        // dataUser = user();
     }
 
     if ( dataUser?.token == null )

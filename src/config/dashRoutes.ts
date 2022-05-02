@@ -3,7 +3,6 @@ import IconDashboard from '../atoms/Icons/Stroke/IconDashboard';
 import IconHome from '../atoms/Icons/Stroke/IconHome';
 import IconPencilAlt from '../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../atoms/Icons/Stroke/IconPlus';
-import IconRoles from '../atoms/Icons/Stroke/IconRoles';
 import IconUsers from '../atoms/Icons/Stroke/IconUsers';
 import IconViewList from '../atoms/Icons/Stroke/IconViewList';
 import { permissions } from './permissions';
@@ -35,7 +34,7 @@ export const dashRoutes = [
         [
             {
                 path: '/',
-                component: lazy( () => import( '../pages/users' ) ),
+                component: lazy( () => import( '../pages/dashboard' ) ),
                 name: 'a_list',
                 icon: IconViewList,
                 showItem: true,
@@ -43,7 +42,7 @@ export const dashRoutes = [
             },
             {
                 path: '/create',
-                component: lazy( () => import( '../pages/users/create' ) ),
+                component: lazy( () => import( '../pages/dashboard' ) ),
                 name: 'a_create',
                 icon: IconPlus,
                 showItem: true,
@@ -51,7 +50,7 @@ export const dashRoutes = [
             },
             {
                 path: '/view',
-                component: lazy( () => import( '../pages/users/view' ) ),
+                component: lazy( () => import( '../pages/dashboard' ) ),
                 name: 'u_view',
                 icon: IconViewList,
                 showItem: false,
@@ -59,7 +58,7 @@ export const dashRoutes = [
             },
             {
                 path: '/:id/update',
-                component: lazy( () => import( '../pages/users/update/[id]' ) ),
+                component: lazy( () => import( '../pages/dashboard' ) ),
                 name: 'u_update',
                 icon: IconPencilAlt,
                 showItem: false,
@@ -67,52 +66,11 @@ export const dashRoutes = [
             },
             {
                 path: '/editPassword/:id',
-                component: lazy( () => import( '../pages/users/editPassword' ) ),
+                component: lazy( () => import( '../pages/dashboard' ) ),
                 name: 'a_change_password',
                 icon: IconPencilAlt,
                 showItem: false,
                 permission: 'Dashboard',
-            },
-        ],
-    },
-    {
-        path: '/UserChangePass/:token',
-        component: lazy( () => import( '../pages/users/changePassword' ) ),
-        name: 'a_change_password',
-        icon: IconPencilAlt,
-        showItem: false,
-    },
-    {
-        path: '/roles',
-        name: 'roles',
-        icon: IconRoles,
-        showItem: true,
-        permission: permissions.ROLES.LIST,
-        children:
-        [
-            {
-                path: '/',
-                component: lazy( () => import( '../pages/roles' ) ),
-                name: 'a_list',
-                icon: IconViewList,
-                showItem: true,
-                permission: permissions.ROLES.LIST,
-            },
-            {
-                path: '/create',
-                component: lazy( () => import( '../pages/roles/create' ) ),
-                name: 'a_create',
-                icon: IconPlus,
-                showItem: true,
-                permission: permissions.ROLES.SAVE,
-            },
-            {
-                path: '/:id/update',
-                component: lazy( () => import( '../pages/roles/update/[id]' ) ),
-                name: 'r_update',
-                showItem: false,
-                icon: IconPencilAlt,
-                permission: permissions.ROLES.UPDATE,
             },
         ],
     },
