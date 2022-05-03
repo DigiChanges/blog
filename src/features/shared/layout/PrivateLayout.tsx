@@ -8,7 +8,7 @@ import DashItems from './DashItems';
 
 import { dashRoutes } from '../../../config/dashRoutes';
 import IconHome from '../../../atoms/Icons/Stroke/IconHome';
-import { BlogApi, BlogListResponse } from '../../blog/interfaces';
+import { CategoriesApi, CategoriesListResponse } from '../../blog/interfaces';
 import BlogRepository from '../../blog/repositories/BlogRepository';
 import { INIT_STATE } from '../constants';
 import usePaginatedState from '../hooks/usePaginatedState';
@@ -33,13 +33,13 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
     const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
 
     const [ categories, { refetch } ] = createResource( uriParams, blogRepository.getCategoryList() );
-    const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<BlogApi, BlogListResponse>( categories );
+    const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<CategoriesApi, CategoriesListResponse>( categories );
 
     const mappedCategories = createMemo( () =>
     {
         return categories()?.data.map( category => ( {
-            path: '/blog',
-            component: lazy( () => import( '../../../pages/blog' ) ),
+            path: '/articles',
+            component: lazy( () => import( '../../../pages/articles' ) ),
             name: category.attributes.name,
             icon: IconHome,
             showItem: true,

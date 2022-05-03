@@ -23,6 +23,7 @@ export const config = {
             // },
             blog: {
                 getCategories: `${BACKEND_BASE_PATH}/categories`,
+                getArticles: `${BACKEND_BASE_PATH}/articles`,
             },
         },
     },

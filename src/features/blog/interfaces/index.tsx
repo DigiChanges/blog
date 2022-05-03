@@ -7,40 +7,54 @@
 
 import { IPaginatedBodyApi } from '../../shared/interfaces/response/IPaginatedBodyApi';
 
-export interface Blog {
+export interface Category
+{
     id: number;
     attributes: {
         name: string;
         slug: string;
     };
 }
-// export interface DocumentType extends IdPayload
-// {
-//     code: string;
-//     description: string;
-//     country: Country;
-// }
 
-// export interface DocumentTypePayload
-// {
-//     code: string;
-//     description: string;
-//     country: {
-//         code: string;
-//     };
-// }
+export interface Author
+{
+    id: number;
+    attributes: {
+        name: string;
+        email: string;
+        createdAt: string;
+        updatedAt: string;
+    };
+}
 
-export type BlogApi = Blog;
+export interface Article
+{
+    id: number;
+    attributes: {
+        title: string;
+        description: string;
+        content: string;
+        slug: string;
+        createdAt: string;
+        updatedAt: string;
+        publishedAt: string;
+        category: { data: Category };
+        image: {
+            data: any;
+        };
+        author: {
+            data: Author;
+        };
+    };
+}
 
-// export type DocumentTypeResponse = IBodyApi & {
-//     data: DocumentTypeApi;
-// };
+export type CategoriesApi = Category;
+export type ArticlesApi = Article;
 
-export type BlogListResponse = IPaginatedBodyApi & {
-    data: BlogApi[];
+export type CategoriesListResponse = IPaginatedBodyApi & {
+    data: CategoriesApi[];
 };
 
-// export type IdentificationDocumentValue = {
-//     documentType: SelectValueOption | undefined;
-//     value: string;
-// };
+export type ArticlesListResponse = IPaginatedBodyApi & {
+    data: ArticlesApi[];
+};

@@ -1,4 +1,4 @@
-# solid-experience
+# DigiChanges Categories
 
 ## Usage
 
