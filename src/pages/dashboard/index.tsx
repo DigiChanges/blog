@@ -1,12 +1,12 @@
 import Dashboard from '../../features/dashboard/templates/dashboard';
 import { Component } from 'solid-js';
-import PrivateLayout from '../../features/shared/layout/PrivateLayout';
+import Layout from '../../features/shared/layout/Layout';
 const DashboardPage: Component = () =>
 {
     return (
-        <PrivateLayout>
+        <Layout>
             <Dashboard />
-        </PrivateLayout>
+        </Layout>
     );
 };
 

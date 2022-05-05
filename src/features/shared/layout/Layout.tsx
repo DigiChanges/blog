@@ -1,23 +1,17 @@
 
 import { Component, createMemo, createResource, createSignal, JSX, lazy, Show } from 'solid-js';
+import BlogRepository from '../../blog/repositories/BlogRepository';
 import Footer from '../../footer/organisms/Footer';
 import NavBar from '../../navBar/organisms/NavBar';
 import ExpandButton from '../../sideBar/organisms/ExpandButton';
 import SideBar from '../../sideBar/organisms/SideBar';
 import DashItems from './DashItems';
 
-import { dashRoutes } from '../../../config/dashRoutes';
-import IconHome from '../../../atoms/Icons/Stroke/IconHome';
-import { CategoriesApi, CategoriesListResponse } from '../../blog/interfaces';
-import BlogRepository from '../../blog/repositories/BlogRepository';
-import { INIT_STATE } from '../constants';
-import usePaginatedState from '../hooks/usePaginatedState';
-import useQuery from '../hooks/useQuery';
 interface privateTemplateProps {
     children: JSX.Element | JSX.Element[];
 }
 
-const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
+const Layout: Component<privateTemplateProps> = ( props ) =>
 {
     const [ showSidebar, setShowSideBar ] = createSignal( false );
     const [ getExpanded, setExpanded ] = createSignal( true );
@@ -30,23 +24,19 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
 
     const blogRepository = new BlogRepository();
 
-    const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
-
-    const [ categories, { refetch } ] = createResource( uriParams, blogRepository.getCategoryList() );
-    const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<CategoriesApi, CategoriesListResponse>( categories );
+    const [ categories ] = createResource( blogRepository.getCategoryWithIconsList() );
 
     const mappedCategories = createMemo( () =>
-    {
-        return categories()?.data.map( category => ( {
-            path: '/articles',
-            component: lazy( () => import( '../../../pages/articles' ) ),
-            name: category.attributes.name,
-            icon: IconHome,
-            showItem: true,
-            permission: 'Dashboard',
-        }
-        ) );
-    } );
+        categories()?.data.map( category => (
+            {
+                path: `/category/${category.attributes.slug}`,
+                component: lazy( () => import( '../../../pages/articles' ) ),
+                name: category.attributes.name,
+                icon: () => <img src={category.attributes.icon.data.attributes.url} />,
+                showItem: true,
+            }
+        ) )
+    );
 
     return (
         <div class="grid grid-areas-mobile-layout md:grid-areas-tablet-layout lg:grid-areas-desktop-layout grid-cols-desktop-layout
@@ -88,4 +78,4 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
     );
 };
 
-export default PrivateLayout;
+export default Layout;

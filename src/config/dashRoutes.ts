@@ -16,14 +16,14 @@ export const dashRoutes = [
         showItem: true,
         permission: 'Dashboard',
     },
-    // {
-    //     path: '/articles',
-    //     component: lazy( () => import( '../pages/articles' ) ),
-    //     name: 'HTML',
-    //     icon: IconDashboard,
-    //     showItem: true,
-    //     permission: 'Dashboard',
-    // },
+    {
+        path: '/category/:slug',
+        component: lazy( () => import( '../pages/articles' ) ),
+        name: 'HTML',
+        icon: IconDashboard,
+        showItem: true,
+        permission: 'Dashboard',
+    },
     // {
     //     path: '/articles/:slug',
     //     component: lazy( () => import( '../pages/articles/show' ) ),

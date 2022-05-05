@@ -1,14 +1,8 @@
-import { Link } from 'solid-app-router';
+import { Text } from 'solid-i18n';
 import { Component, createSignal, For, Show } from 'solid-js';
-import Button from '../../atoms/Button';
-import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconArrowCircleLeft';
-import IconLockOpen from '../../atoms/Icons/Stroke/IconLockOpen';
-import IconPencilAlt from '../../atoms/Icons/Stroke/IconPencilAlt';
-import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
 import Title from '../../atoms/Title';
-import MediaObject from '../../molecules/MediaObject';
-import TitleWithButton from '../../molecules/TitleWithButton';
 import { ArticlesApi } from '../../features/blog/interfaces';
+import MediaObject from '../../molecules/MediaObject';
 
 interface articlesListTemplateProps
 {
@@ -19,7 +13,6 @@ interface articlesListTemplateProps
 
 const List: Component<articlesListTemplateProps> = ( props ) =>
 {
-    const [ showModal, setShowModal ] = createSignal( false );
     const [ getShowScroll, setShowScroll ] = createSignal( false );
 
     const checkScrollTop = () =>
@@ -49,14 +42,13 @@ const List: Component<articlesListTemplateProps> = ( props ) =>
 
     return (
         <section class="mx-8">
-            <TitleWithButton
-                class="dg-section-title"
-                title="Articles"
-                labelButtonName=""
-                icon={IconPlus}
-                // buttonAction={actionCreateButton()}
-                path="/articles/create"
-            />
+            <section class="flex flex-row items-center my-6">
+                <div class="flex flex-row justify-between mb-2">
+                    <Title class="dg-section-title" titleType="h4">
+                        <Text message="Articles" />
+                    </Title>
+                </div>
+            </section>
 
             {/* <FilterSort placeholder="Search articles..." filterBy={filterBy} orderBy={orderBy}/> */}
 
@@ -78,14 +70,6 @@ const List: Component<articlesListTemplateProps> = ( props ) =>
                             </MediaObject>
                         }
                     </For>
-                </div>
-
-                <div class="dg-full-center-flex mt-8">
-                    <Show when={!!props?.nextPage}>
-                        <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
-                            View More
-                        </Button>
-                    </Show>
                 </div>
             </Show>
         </section>

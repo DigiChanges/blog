@@ -5,7 +5,7 @@ import { INIT_STATE } from '../../features/shared/constants';
 import createAlert from '../../features/shared/hooks/createAlert';
 // import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import useQuery from '../../features/shared/hooks/useQuery';
-import PrivateLayout from '../../features/shared/layout/PrivateLayout';
+import Layout from '../../features/shared/layout/Layout';
 import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
 import List from '../../templates/articles/List';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
@@ -31,16 +31,15 @@ const IndexPage: Component = () =>
     };
 
     return (
-        <PrivateLayout>
+        <Layout>
             { categories.error && <h1> Error: { categories?.error?.message } </h1> }
             <AlertErrors errorData={ errorAlert.errorData() } title="err_save" description="err_process_role"/>
-            <h1>this is a blog</h1>
             <List
                 data={ aList() }
                 loading={ categories.loading }
                 viewMoreAction={ viewMoreAction }
             />
-        </PrivateLayout>
+        </Layout>
     );
 };
 
