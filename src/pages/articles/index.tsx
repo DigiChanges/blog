@@ -7,7 +7,7 @@ import createAlert from '../../features/shared/hooks/createAlert';
 import useQuery from '../../features/shared/hooks/useQuery';
 import Layout from '../../features/shared/layout/Layout';
 import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
-import List from '../../templates/articles/List';
+import List from '../../features/articles/templates/articles/List';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import { ArticlesListResponse } from '../../features/blog/interfaces';
 import { useSearchParams } from 'solid-app-router';

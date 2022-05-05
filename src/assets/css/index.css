@@ -31,7 +31,7 @@
   }
 
   .dg-media-object {
-    @apply flex items-center font-semibold text-sm text-main-gray-250 rounded-lg py-2 px-4 dg-subelement-bg hover:bg-main-gray-500;
+    @apply flex items-center font-semibold rounded-lg py-2 px-4 dg-subelement-bg hover:bg-main-gray-500;
   }
   .dg-grid-3x3 {
     @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3;
