@@ -24,12 +24,10 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
                 <div class="dg-full-center-flex h-16">
 
                     <div class="flex-1 flex items-start justify-start sm:items-stretch sm:justify-start">
-                        <div class="flex-shrink-0 flex items-center  cursor-pointer">
-                            <a href="/" class="mr-5">
-                                <Image src={logoNav} alt="digichanges logo" class="block h-8 w-auto"/>
-                            </a>
-                            <h2 class="text-gray-400">DIGICHANGES</h2>
-                        </div>
+                        <a href="/" class="flex-shrink-0 flex items-center cursor-pointer gap-5">
+                            <Image src={logoNav} alt="digichanges logo" class="block h-8 w-auto"/>
+                            <h2 class="text-gray-400">BLOG</h2>
+                        </a>
                     </div>
 
                     <LanguageMenu />
