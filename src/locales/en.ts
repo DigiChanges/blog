@@ -44,15 +44,18 @@ const app: I18nLocales = {
     a_your_email: 'Your email',
     a_your_password: 'Your password',
 };
-const auth: I18nLocales = {
-    au_forgot_password: '¿Forgot your Password?',
-};
+
 const appValidations: I18nLocales = {
     av_one_item: 'Must have at least 1 items',
     av_required: 'Required',
     av_too_long: 'Too Long!',
     av_too_short: 'Too Short!',
     av_password_match: 'Passwords must match',
+};
+
+const articles: I18nLocales = {
+    articles_list_title_by: 'Articles about {category}',
+    articles_list_title: 'Last articles',
 };
 
 const entities: I18nLocales = {
@@ -103,41 +106,13 @@ const properties: I18nLocales = {
 
 };
 
-const roles: I18nLocales = {
-    r_assigned: 'Role/s assigned',
-    r_create: 'Create Role',
-    r_created: 'Created Role',
-    r_list: 'Role List',
-    r_no_roles: 'Without Roles',
-    r_remove: 'Are you sure you want to delete this role?',
-    r_search: '{count, plural, one {Search role} other {Search roles}}',
-    r_update: 'Update Role',
-    r_updated: 'Role Updated',
-};
-
-const user: I18nLocales = {
-    u_assigned: 'User/s assigned',
-    u_create: 'Create User',
-    u_created: 'User created',
-    u_list: 'User List',
-    u_no_users: 'Without User',
-    u_remove: 'Are you sure you want to delete this user?',
-    u_search: '{count, plural, one {Search user} other {Search users}}',
-    u_update: 'Update User',
-    u_updated: 'User updated',
-    u_users: 'Users',
-    u_view: 'Show User',
-};
-
 const en: I18nLocales = {
     ...app,
     ...appValidations,
-    ...auth,
+    ...articles,
     ...entities,
     ...errors,
     ...properties,
-    ...roles,
-    ...user,
 };
 
 export default en;

@@ -45,10 +45,6 @@ const app: I18nLocales = {
     a_your_password: 'Tu contraseña',
 };
 
-const auth: I18nLocales = {
-    au_forgot_password: '¿Olvidaste tu contraseña?',
-};
-
 const appValidations: I18nLocales = {
     av_one_item: 'Debe contener al menos un elemento',
     av_password_match: 'Las contraseñas deben coincidir',
@@ -57,8 +53,9 @@ const appValidations: I18nLocales = {
     av_too_short: 'Demasiado Corto!',
 };
 
-const entities: I18nLocales = {
-    User: 'Usuario',
+const articles: I18nLocales = {
+    articles_list_title_by: 'Artículos sobre {category}',
+    articles_list_title: 'Últimos artículos',
 };
 
 const errors: I18nLocales = {
@@ -105,41 +102,12 @@ const properties: I18nLocales = {
     type_id: 'Tipo',
 };
 
-const roles: I18nLocales = {
-    r_assigned: 'Role/s asignados',
-    r_create: 'Crear Rol',
-    r_created: 'Rol Creado',
-    r_list: 'Listado de Roles',
-    r_no_roles: 'No Roles',
-    r_remove: '¿Está seguro que desea eliminar este rol?',
-    r_search: '{count, plural, one {Buscar rol} other {Buscar roles}}',
-    r_update: 'Editar Rol',
-    r_updated: 'Rol Actualizado',
-};
-
-const user: I18nLocales = {
-    u_assigned: 'Usuario/s asignados',
-    u_create: 'Crear Usuario',
-    u_created: 'Usuario creado',
-    u_list: 'Listado  de Usuarios',
-    u_no_users: 'Sin usuarios',
-    u_remove: '¿Está seguro que desea eliminar este usuario?',
-    u_search: '{count, plural, one {Buscar usuario} other {Buscar usuarios}}',
-    u_update: 'Editar Usuario',
-    u_updated: 'Usuario actualizado',
-    u_users: 'Usuarios',
-    u_view: 'Ver Usuario',
-};
-
 const es: I18nLocales = {
     ...app,
     ...appValidations,
-    ...auth,
-    ...entities,
+    ...articles,
     ...errors,
     ...properties,
-    ...roles,
-    ...user,
 };
 
 export default es;

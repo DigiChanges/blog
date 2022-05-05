@@ -37,6 +37,7 @@ const IndexPage: Component = () =>
             <AlertErrors errorData={ errorAlert.errorData() } title="err_save" description="err_process_role"/>
             <List
                 data={ articles()?.data }
+                category={ searchParams.category }
                 loading={ articles.loading }
             />
         </Layout>

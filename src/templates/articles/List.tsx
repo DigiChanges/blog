@@ -7,6 +7,7 @@ import MediaObject from '../../molecules/MediaObject';
 interface articlesListTemplateProps
 {
     data: ArticlesApi[] | undefined;
+    category: string | undefined;
     loading: boolean;
 }
 
@@ -44,7 +45,12 @@ const List: Component<articlesListTemplateProps> = ( props ) =>
             <section class="flex flex-row items-center my-6">
                 <div class="flex flex-row justify-between mb-2">
                     <Title class="dg-section-title" titleType="h4">
-                        <Text message="Articles" />
+                        <Show when={props.category}
+                            fallback={<Text message="articles_list_title" />} >
+                            <Text message="articles_list_title_by"
+                                category={props.category as string}
+                            />
+                        </Show>
                     </Title>
                 </div>
             </section>
