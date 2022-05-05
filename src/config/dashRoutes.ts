@@ -17,7 +17,7 @@ export const dashRoutes = [
         permission: 'Dashboard',
     },
     {
-        path: '/category/:slug',
+        path: '/articles',
         component: lazy( () => import( '../pages/articles' ) ),
         name: 'HTML',
         icon: IconDashboard,

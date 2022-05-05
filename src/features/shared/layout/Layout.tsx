@@ -5,6 +5,7 @@ import Footer from '../../footer/organisms/Footer';
 import NavBar from '../../navBar/organisms/NavBar';
 import ExpandButton from '../../sideBar/organisms/ExpandButton';
 import SideBar from '../../sideBar/organisms/SideBar';
+import GeneralLoader from '../templates/GeneralLoader';
 import DashItems from './DashItems';
 
 interface privateTemplateProps {
@@ -27,24 +28,33 @@ const Layout: Component<privateTemplateProps> = ( props ) =>
     const [ categories ] = createResource( blogRepository.getCategoryWithIconsList() );
 
     const mappedCategories = createMemo( () =>
-        categories()?.data.map( category => (
-            {
-                path: `/category/${category.attributes.slug}`,
-                component: lazy( () => import( '../../../pages/articles' ) ),
-                name: category.attributes.name,
-                icon: () => <img src={category.attributes.icon.data.attributes.url} />,
-                showItem: true,
-            }
-        ) )
+        categories()?.data.map( category =>
+        {
+            const  paramsString = `category=${category.attributes.slug}`;
+            const searchParams = new URLSearchParams( paramsString );
+            return (
+                {
+                    path: `/articles?${searchParams.toString()}`,
+                    component: lazy( () => import( '../../../pages/articles' ) ),
+                    name: category.attributes.name,
+                    icon: () => <img src={category.attributes.icon.data.attributes.url} />,
+                    showItem: true,
+                }
+            );
+        } )
     );
 
     return (
         <div class="grid grid-areas-mobile-layout md:grid-areas-tablet-layout lg:grid-areas-desktop-layout grid-cols-desktop-layout
         h-full dg-main-bg">
             <header class="grid-in-header dg-element-bg">
-                <NavBar sideBarIsShown={showSidebar()} onClick={toggleShowSideBar} email={'example@mail.com'} />
+                <NavBar sideBarIsShown={showSidebar()} onClick={toggleShowSideBar} />
             </header>
-            <Show when={!categories.loading}>
+            <Show when={!categories.loading}
+                fallback={(
+                    <GeneralLoader />
+                )}
+            >
                 {/* desktop */}
                 <div class="grid-in-sidebar hidden md:block mt-6 ml-4 z-10 w-max">
                     <SideBar class="dg-rounded ml-1 h-89 py-5" getExpanded={getExpanded()}>

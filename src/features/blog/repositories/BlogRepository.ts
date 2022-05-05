@@ -1,10 +1,10 @@
 import { AxiosRequestConfig } from 'axios';
-import { HttpAxiosRequestWithoutToken } from '../../../services/HttpAxiosRequest';
+import { HttpAxiosRequest, HttpAxiosRequestWithoutToken } from '../../../services/HttpAxiosRequest';
 import { config } from '../../shared/repositories/config';
 import { ArticlesListResponse, CategoriesListResponse, CategoriesWithIconListResponse } from '../interfaces';
 
 const { protocol, hostname, port } = config.apiGateway.server;
-const { getCategories, getCategoriesWithIcons, getArticles } = config.apiGateway.routes.blog;
+const { getCategories, getCategoriesWithIcons, getArticles, getArticlesPopulated } = config.apiGateway.routes.blog;
 
 
 class BlogRepository
@@ -37,6 +37,15 @@ class BlogRepository
         };
 
         return HttpAxiosRequestWithoutToken<ArticlesListResponse>( config );
+    }
+
+    public getArticlesListByCategorySlug ()
+    {
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${getArticlesPopulated}`,
+        };
+
+        return HttpAxiosRequest<ArticlesListResponse>( config );
     }
 }
 

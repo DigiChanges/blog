@@ -1,4 +1,4 @@
-import { Component, createResource } from 'solid-js';
+import { Component, createMemo, createResource } from 'solid-js';
 import { ArticlesApi, CategoriesApi, CategoriesListResponse } from '../../features/blog/interfaces';
 import BlogRepository from '../../features/blog/repositories/BlogRepository';
 import { INIT_STATE } from '../../features/shared/constants';
@@ -10,34 +10,34 @@ import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors
 import List from '../../templates/articles/List';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import { ArticlesListResponse } from '../../features/blog/interfaces';
+import { useSearchParams } from 'solid-app-router';
 
 const IndexPage: Component = () =>
 {
     const errorAlert = createAlert();
     const blogRepository = new BlogRepository();
 
-    const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
-
-    const [ categories ] = createResource( uriParams, blogRepository.getCategoryList() );
-    const { resourceList: cList, setViewMore: cSetViewMore, paginationData: cPaginationData } = usePaginatedState<CategoriesApi, CategoriesListResponse>( categories );
-
-    const [ articles ] = createResource( uriParams, blogRepository.getArticlesList() );
-    const { resourceList: aList, setViewMore: aSetViewMore, paginationData: aPaginationData } = usePaginatedState<ArticlesApi, ArticlesListResponse>( articles );
-
-    const viewMoreAction = () => () =>
+    const [ searchParams ] = useSearchParams();
+    const queryParams = createMemo( () =>
     {
-        goToPage( articles()?.pagination?.nextUrl );
-        // setViewMore();
-    };
+        if ( !searchParams.category )
+        {
+            return '';
+        }
+        const query = `filters[category][slug][$eq]=${searchParams.category}`;
+        return query.toString();
+    } );
+
+    const [ articles ] = createResource( queryParams,  blogRepository.getArticlesListByCategorySlug() );
 
     return (
         <Layout>
-            { categories.error && <h1> Error: { categories?.error?.message } </h1> }
+            { articles.error && <h1> Error: { articles?.error?.message } </h1> }
+            {/* { categories.error && <h1> Error: { categories?.error?.message } </h1> } */}
             <AlertErrors errorData={ errorAlert.errorData() } title="err_save" description="err_process_role"/>
             <List
-                data={ aList() }
-                loading={ categories.loading }
-                viewMoreAction={ viewMoreAction }
+                data={ articles()?.data }
+                loading={ articles.loading }
             />
         </Layout>
     );

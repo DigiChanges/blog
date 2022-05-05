@@ -3,29 +3,12 @@ import axios, { AxiosRequestConfig } from 'axios';
 const HTTP_SUCCESS_STATUS = [ 200, 201, 204, 300, 302, 304 ];
 const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
 
-export type QueryParams = {
-    filter?: string;
-    pagination?: string;
-};
-
-export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any ) => async ( queryParams?: QueryParams ) =>
+export const HttpAxiosRequest = <T>( config: AxiosRequestConfig ) => async ( queryParams?: any ) =>
 {
-    if ( !dataUser )
-    {
-        // const [ user ]: any = useApplicationContext();
-        // dataUser = user();
-    }
-
-    if ( dataUser?.token == null )
-    {
-        throw new Error( 'No token' );
-    }
-
     const requestDefaultOptions: AxiosRequestConfig =
     {
         ...config,
         headers: {
-            'Authorization': `Bearer ${dataUser.token}`,
             'Content-Type': 'application/json',
             ...config.headers,
         },
@@ -34,7 +17,7 @@ export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any 
     return await HttpAxiosRequestWithoutToken<T>( requestDefaultOptions )( queryParams );
 };
 
-export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) => async ( queryParams?: QueryParams ) =>
+export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) => async ( queryParams?: any ) =>
 {
     const requestDefaultOptions: AxiosRequestConfig =
     {
@@ -58,24 +41,18 @@ export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) =>
         }
     }
 
-    if ( queryParams?.filter )
+    if ( queryParams )
     {
-        config.url = `${config.url}?${queryParams.filter}`;
-    }
-
-    if ( queryParams?.pagination )
-    {
-        if ( queryParams?.filter )
+        if ( config.url?.match( /\?./ ) )
         {
-            config.url = `${config.url}&${queryParams.pagination}`;
+            config.url = `${config.url}&${queryParams}`;
         }
         else
         {
-            config.url = `${config.url}?${queryParams.pagination}`;
+            config.url = `${config.url}?${queryParams}`;
         }
     }
 
-    // axios.defaults.withCredentials = true;
     const http = axios.create();
 
     const response = await http.request<T>( { ...requestDefaultOptions, ...config } );

@@ -1,6 +1,6 @@
 import { createMemo } from 'solid-js';
+import { QueryParams } from '../interfaces';
 import FilterFactory from '../utils/FilterFactory';
-import { QueryParams } from '../../../services/HttpAxiosRequest';
 import useFilter from './useFilter';
 import usePagination from './usePagination';
 

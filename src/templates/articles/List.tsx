@@ -8,7 +8,6 @@ interface articlesListTemplateProps
 {
     data: ArticlesApi[] | undefined;
     loading: boolean;
-    viewMoreAction?: any;
 }
 
 const List: Component<articlesListTemplateProps> = ( props ) =>

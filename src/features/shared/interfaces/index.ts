@@ -1,10 +1,3 @@
-
-export interface ReduxAction
-{
-    type: string;
-    payload: any | null;
-}
-
 export interface IFilterSort
 {
     search: string;
@@ -30,3 +23,8 @@ export interface IMultiSelect<T, Q=string>
     label: string;
     id: Q;
 }
+
+export type QueryParams = {
+    filter?: string;
+    pagination?: string;
+};

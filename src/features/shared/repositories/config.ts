@@ -12,19 +12,11 @@ export const config = {
             port: API_PORT,
         },
         routes: {
-            // auth: {
-            //     login: `${BACKEND_BASE_PATH}/auth/login`,
-            //     refreshToken: `${BACKEND_BASE_PATH}/auth/refresh-token`,
-            //     logout: `${BACKEND_BASE_PATH}/auth/logout`,
-            //     permissionsGetAll: `${BACKEND_BASE_PATH}/auth/permissions`,
-            //     keepAlive: `${BACKEND_BASE_PATH}/auth/keep-alive`,
-            //     forgotPassword: `${BACKEND_BASE_PATH}/auth/forgot-password`,
-            //     changeForgotPassword: `${BACKEND_BASE_PATH}/auth/change-forgot-password`,
-            // },
             blog: {
                 getCategories: `${BACKEND_BASE_PATH}/categories`,
                 getCategoriesWithIcons: `${BACKEND_BASE_PATH}/categories?populate=icon`,
                 getArticles: `${BACKEND_BASE_PATH}/articles`,
+                getArticlesPopulated: `${BACKEND_BASE_PATH}/articles?populate[author][populate][0]=picture&populate[category][populate][0]=icon`, // &filters[category][slug][$eq]=:categorySlug`,
             },
         },
     },
