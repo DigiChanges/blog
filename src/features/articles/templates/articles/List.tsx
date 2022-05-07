@@ -1,10 +1,11 @@
+import remarkGfm from 'remark-gfm';
+import { Link } from 'solid-app-router';
 import { Text } from 'solid-i18n';
 import { Component, createSignal, For, Show } from 'solid-js';
+import Markdown from 'solid-markdown';
 import Title from '../../../../atoms/Title';
-import { ArticlesApi } from '../../../blog/interfaces';
 import MediaObject from '../../../../molecules/MediaObject';
-import SolidMarkdown from 'solid-markdown';
-import { Link } from 'solid-app-router';
+import { ArticlesApi } from '../../../blog/interfaces';
 
 interface articlesListTemplateProps
 {
@@ -69,18 +70,14 @@ const List: Component<articlesListTemplateProps> = ( props ) =>
                                 <div class="flex-col justify-center content-center ml-3">
                                     <Title titleType="h1" class="hover:transform hover:scale-125 text-2xl">
                                         <a href={`/articles/view/${article.id}`}>
-                                            {article.attributes.title}{' '}{article.attributes.description}
+                                            {`${article.attributes.title} ${article.attributes.description}`}
                                         </a>
                                     </Title>
                                     {/* <img src={article.attributes.image.data} /> */}
                                     {/* {article.attributes.image.data} */}
                                     <div class="max-h-32 overflow-hidden overflow-ellipsis">
-
-                                        <SolidMarkdown>
-                                            {article.attributes.content}
-                                        </SolidMarkdown>
+                                        <Markdown children={article.attributes.content} remarkPlugins={[ remarkGfm ]} />
                                     </div>
-                                    {/* <img src={article.attributes.category.data.attributes.name} /> */}
                                     <div class="mt-6">
 
                                         <Link href={`/articles?category=${article.attributes.category.data.attributes.slug}`}>

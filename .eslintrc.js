@@ -4,7 +4,5 @@ module.exports = {
         require.resolve( 'solidjs-eslint-config' ),
     ],
     rules: {
-        'jsx-quotes': [ 'error', 'prefer-double' ],
-        'template-curly-spacing': [ 'warn', 'never' ],
     },
 } ;
