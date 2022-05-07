@@ -20,7 +20,7 @@ export class SelectTransform
     {
         if ( items && items.length > 0 )
         {
-            return  items.map( ( item ) => ( { label: item[label], value: item[value] } ) );
+            return items.map( ( item ) => ( { label: item[label], value: item[value] } ) );
         }
 
         return [];

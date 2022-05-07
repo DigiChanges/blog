@@ -30,7 +30,7 @@ const Layout: Component<privateTemplateProps> = ( props ) =>
     const mappedCategories = createMemo( () =>
         categories()?.data.map( category =>
         {
-            const  paramsString = `category=${category.attributes.slug}`;
+            const paramsString = `category=${category.attributes.slug}`;
             const searchParams = new URLSearchParams( paramsString );
             return (
                 {
@@ -58,7 +58,7 @@ const Layout: Component<privateTemplateProps> = ( props ) =>
                 {/* desktop */}
                 <div class="grid-in-sidebar hidden md:block mt-6 ml-4 z-10 w-max">
                     <SideBar class="dg-rounded ml-1 h-89 py-5" getExpanded={getExpanded()}>
-                        <ExpandButton  getExpanded={getExpanded()} setExpanded={setExpanded} />
+                        <ExpandButton getExpanded={getExpanded()} setExpanded={setExpanded} />
                         <div class="flex flex-col h-full justify-between pb-5">
                             <div classList={{ 'mt-8': !getExpanded() }}>
                                 <DashItems expanded={getExpanded()} dashRoutes={mappedCategories() as any}/>

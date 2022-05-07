@@ -28,7 +28,7 @@ const IndexPage: Component = () =>
         return query.toString();
     } );
 
-    const [ articles ] = createResource( queryParams,  blogRepository.getArticlesListByCategorySlug() );
+    const [ articles ] = createResource( queryParams, blogRepository.getArticlesListByCategorySlug() );
 
     return (
         <Layout>
