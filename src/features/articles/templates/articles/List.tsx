@@ -44,7 +44,7 @@ const List: Component<articlesListTemplateProps> = ( props ) =>
     };
 
     return (
-        <section class="mx-8">
+        <section class="px-8">
             <section class="flex flex-row items-center my-6">
                 <div class="flex flex-row justify-between mb-2">
                     <Title class="dg-section-title" titleType="h4">
@@ -61,21 +61,18 @@ const List: Component<articlesListTemplateProps> = ( props ) =>
             {/* <FilterSort placeholder="Search articles..." filterBy={filterBy} orderBy={orderBy}/> */}
 
             <Show when={!props.loading} fallback={() => <div>Loading articles...</div>}>
-                <div class="flex flex-col gap-5">
+                <div class="grid gap-10">
 
                     <For each={props.data} fallback={<div>No articles...</div>}>
                         {( article ) =>
-                            <MediaObject class="dg-media-object" >
-                                {/* <div class="flex-col w-10 h-10 bg-white text-black justify-center content-center rounded-full">{' '}</div> */}
-                                <div class="flex-col justify-center content-center ml-3">
+                            <MediaObject class="dg-media-object min-w-full" >
+                                <div class="flex-col justify-center content-center">
                                     <Title titleType="h1" class="hover:transform hover:scale-125 text-2xl">
                                         <a href={`/articles/view/${article.id}`}>
                                             {`${article.attributes.title} ${article.attributes.description}`}
                                         </a>
                                     </Title>
-                                    {/* <img src={article.attributes.image.data} /> */}
-                                    {/* {article.attributes.image.data} */}
-                                    <div class="max-h-32 overflow-hidden overflow-ellipsis">
+                                    <div class="max-h-40 overflow-hidden overflow-ellipsis max-w-full">
                                         <Markdown children={article.attributes.content} remarkPlugins={[ remarkGfm ]} />
                                     </div>
                                     <div class="mt-6">
