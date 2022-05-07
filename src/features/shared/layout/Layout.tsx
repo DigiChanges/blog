@@ -46,8 +46,10 @@ const Layout: Component<privateTemplateProps> = ( props ) =>
 
     return (
         <div class="grid grid-flow-row">
-            <header class="grid-in-header dg-element-bg lg:px-20">
-                <NavBar sideBarIsShown={showSidebar()} onClick={toggleShowSideBar} />
+            <header class="dg-element-bg">
+                <div class="lg:max-w-screen-xxl lg:w-full lg:mx-auto">
+                    <NavBar sideBarIsShown={showSidebar()} onClick={toggleShowSideBar} />
+                </div>
             </header>
 
             <div class="grid grid-areas-mobile-layout md:grid-areas-tablet-layout lg:grid-areas-desktop-layout grid-cols-desktop-layout

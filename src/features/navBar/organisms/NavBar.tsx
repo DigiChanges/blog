@@ -1,8 +1,7 @@
-import { Component, createSignal, Show } from 'solid-js';
+import { Component, Show } from 'solid-js';
 import logoNav from '../../../assets/images/logo-nav.png';
 import IconBell from '../../../atoms/Icons/Stroke/IconBell';
 import IconBurger from '../../../atoms/Icons/Stroke/IconBurger';
-import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
 import IconCross from '../../../atoms/Icons/Stroke/IconCross';
 import Image from '../../../atoms/Image';
 import LanguageMenu from '../../language/LanguageMenu';
@@ -16,8 +15,6 @@ interface NavbarTemplatePRops {
 
 const NavBar: Component<NavbarTemplatePRops> = props =>
 {
-    const [ getToggledDrop, setToggleDrop ] = createSignal( false );
-
     return (
         <nav class=" shadow-md text-white " >
             <div class="mx-auto px-2 sm:px-6 lg:px-8">
@@ -41,45 +38,6 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
                                 <span class=""><IconBell /></span>
                             </span>
                         </button>
-                    </div>
-
-                    {/* email and open-close dropdown button */}
-                    <div class="hidden md:block lg:block ml-3 text-main-gray-200 font-bold">
-                        <div>
-                            <Show when={getToggledDrop()} fallback={
-                                <button
-                                    type="button"
-                                    class="inline-flex bg-gray-800 font-bold"
-                                    id="user-menu"
-                                    aria-expanded="false"
-                                    onClick={() => setToggleDrop( true )}>
-                                    <span class="sr-only">Open user menu</span>
-                                    <span>{props.email ?? ''}</span><span class="text-gray  w-6"><IconChevronDown /></span>
-                                </button>
-                            }>
-                                <button
-                                    type="button"
-                                    class="inline-flex bg-gray-800 font-bold"
-                                    id="user-menu"
-                                    aria-expanded="false"
-                                    onClick={() => setToggleDrop( false )}>
-                                    <span class="sr-only">Open user menu</span>
-                                    <span>{props.email ?? ''}</span><span class=" w-6"><IconChevronDown /></span>
-                                </button>
-                            </Show>
-                        </div>
-
-
-                        <div class="origin-top-right absolute right-0 w-48 py-1 mt-5 shadow-md bg-main-gray-500 text-white z-10"
-                            classList={{ hidden: !getToggledDrop() }}
-                            role="menu"
-                            aria-orientation="vertical"
-                            aria-labelledby="user-menu">
-                            <div role="none">
-                                <a href="/" class="block px-4 py-2 text-sm" role="menuitem">Item 1</a>
-                                <a href="/" class="block px-4 py-2 text-sm active" role="menuitem">Item 1 active</a>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="inset-y-0 p-3 right-0 flex items-center md:hidden">
