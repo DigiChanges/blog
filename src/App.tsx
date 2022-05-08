@@ -1,3 +1,4 @@
+import 'highlight.js/styles/github.css';
 import { useRoutes } from 'solid-app-router';
 import { I18nProvider } from 'solid-i18n';
 import { ErrorBoundary, Suspense } from 'solid-js';

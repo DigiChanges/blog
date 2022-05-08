@@ -1,3 +1,4 @@
+import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
 import { Component, createSignal, Show } from 'solid-js';
 import Markdown from 'solid-markdown';
@@ -53,7 +54,14 @@ const ShowTemplate: Component<articlesShowTemplateProps> = ( props ) =>
                 </div>
 
                 <MediaObject class="dg-media-object min-w-full" >
-                    <Markdown children={props?.article?.attributes.content} remarkPlugins={[ remarkGfm ]} />
+                    <Markdown children={props?.article?.attributes.content}
+                        remarkPlugins={[
+                            [ remarkGfm ],
+                        ]}
+                        rehypePlugins={[
+                            [ rehypeHighlight ],
+                        ]}
+                    />
                 </MediaObject>
             </Show>
         </section>

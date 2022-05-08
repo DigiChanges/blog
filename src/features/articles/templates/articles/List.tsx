@@ -1,3 +1,4 @@
+import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
 import { Link } from 'solid-app-router';
 import { Text } from 'solid-i18n';
@@ -77,7 +78,14 @@ const List: Component<articlesListTemplateProps> = ( props ) =>
                                     </Link>
 
                                     <div class="max-h-40 overflow-hidden overflow-ellipsis max-w-full mt-3">
-                                        <Markdown children={article.attributes.content} remarkPlugins={[ remarkGfm ]} />
+                                        <Markdown children={article.attributes.content}
+                                            remarkPlugins={[
+                                                [ remarkGfm ],
+                                            ]}
+                                            rehypePlugins={[
+                                                [ rehypeHighlight ],
+                                            ]}
+                                        />
                                     </div>
 
                                     <div class="mt-6">
