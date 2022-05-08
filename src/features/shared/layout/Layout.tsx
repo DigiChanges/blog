@@ -35,7 +35,7 @@ const Layout: Component<privateTemplateProps> = ( props ) =>
             return (
                 {
                     path: `/articles?${searchParams.toString()}`,
-                    component: lazy( () => import( '../../../pages/articles' ) ),
+                    component: lazy( () => import( '../../../pages/articles/list' ) ),
                     name: category.attributes.name,
                     icon: () => <img src={category.attributes.icon.data.attributes.url} />,
                     showItem: true,

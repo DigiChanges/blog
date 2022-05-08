@@ -17,6 +17,7 @@ export const config = {
                 getCategoriesWithIcons: `${BACKEND_BASE_PATH}/categories?populate=icon`,
                 getArticles: `${BACKEND_BASE_PATH}/articles`,
                 getArticlesPopulated: `${BACKEND_BASE_PATH}/articles?populate[author][populate][0]=picture&populate[category][populate][0]=icon`, // &filters[category][slug][$eq]=:categorySlug`,
+                getArticleById: `${BACKEND_BASE_PATH}/articles/:id?populate[author][populate][0]=picture&populate[category][populate][0]=icon`,
             },
         },
     },

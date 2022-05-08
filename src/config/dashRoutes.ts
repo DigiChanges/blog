@@ -1,16 +1,11 @@
 import { lazy } from 'solid-js';
 import IconDashboard from '../atoms/Icons/Stroke/IconDashboard';
 import IconHome from '../atoms/Icons/Stroke/IconHome';
-import IconPencilAlt from '../atoms/Icons/Stroke/IconPencilAlt';
-import IconPlus from '../atoms/Icons/Stroke/IconPlus';
-import IconUsers from '../atoms/Icons/Stroke/IconUsers';
-import IconViewList from '../atoms/Icons/Stroke/IconViewList';
-import { permissions } from './permissions';
 
 export const dashRoutes = [
     {
         path: '/',
-        component: lazy( () => import( '../pages/articles' ) ),
+        component: lazy( () => import( '../pages/articles/list' ) ),
         name: 'a_home',
         icon: IconHome,
         showItem: true,
@@ -18,7 +13,15 @@ export const dashRoutes = [
     },
     {
         path: '/articles',
-        component: lazy( () => import( '../pages/articles' ) ),
+        component: lazy( () => import( '../pages/articles/list' ) ),
+        name: 'HTML',
+        icon: IconDashboard,
+        showItem: true,
+        permission: 'Dashboard',
+    },
+    {
+        path: '/articles/:slug/p/:id',
+        component: lazy( () => import( '../pages/articles/show' ) ),
         name: 'HTML',
         icon: IconDashboard,
         showItem: true,

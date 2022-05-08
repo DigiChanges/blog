@@ -66,17 +66,21 @@ const List: Component<articlesListTemplateProps> = ( props ) =>
                     <For each={props.data} fallback={<div>No articles...</div>}>
                         {( article ) =>
                             <MediaObject class="dg-media-object min-w-full" >
-                                <div class="flex-col justify-center content-center">
-                                    <Title titleType="h1" class="hover:transform hover:scale-125 text-2xl">
-                                        <a href={`/articles/view/${article.id}`}>
-                                            {`${article.attributes.title} ${article.attributes.description}`}
-                                        </a>
-                                    </Title>
-                                    <div class="max-h-40 overflow-hidden overflow-ellipsis max-w-full">
+                                <div class="flex-col gap-10">
+                                    <Link href={`/articles/${article.attributes.slug}/p/${article.id}#${props.category ? `category_${props.category}` : 'main'}`}>
+                                        <Title titleType="h1" class="hover:transform hover:scale-125 text-2xl">
+                                            <span class="underline">{article.attributes.title}</span>
+                                        </Title>
+                                        <Title titleType="h2" class="hover:transform hover:scale-125 text-2xl">
+                                            <span>{article.attributes.description}</span>
+                                        </Title>
+                                    </Link>
+
+                                    <div class="max-h-40 overflow-hidden overflow-ellipsis max-w-full mt-3">
                                         <Markdown children={article.attributes.content} remarkPlugins={[ remarkGfm ]} />
                                     </div>
-                                    <div class="mt-6">
 
+                                    <div class="mt-6">
                                         <Link href={`/articles?category=${article.attributes.category.data.attributes.slug}`}>
                                         tag: {article.attributes.category.data.attributes.name}
                                         </Link>

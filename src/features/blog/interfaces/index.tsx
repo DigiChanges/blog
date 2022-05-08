@@ -108,3 +108,7 @@ export type CategoriesWithIconListResponse = IPaginatedBodyApi & {
 export type ArticlesListResponse = IPaginatedBodyApi & {
     data: ArticlesApi[];
 };
+
+export type ArticleResponse = {
+    data: ArticlesApi;
+};

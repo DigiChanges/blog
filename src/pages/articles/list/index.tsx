@@ -1,15 +1,15 @@
 import { Component, createMemo, createResource } from 'solid-js';
-import { ArticlesApi, CategoriesApi, CategoriesListResponse } from '../../features/blog/interfaces';
-import BlogRepository from '../../features/blog/repositories/BlogRepository';
-import { INIT_STATE } from '../../features/shared/constants';
-import createAlert from '../../features/shared/hooks/createAlert';
+import { ArticlesApi, CategoriesApi, CategoriesListResponse } from '../../../features/blog/interfaces';
+import BlogRepository from '../../../features/blog/repositories/BlogRepository';
+import { INIT_STATE } from '../../../features/shared/constants';
+import createAlert from '../../../features/shared/hooks/createAlert';
 // import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
-import useQuery from '../../features/shared/hooks/useQuery';
-import Layout from '../../features/shared/layout/Layout';
-import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
-import List from '../../features/articles/templates/articles/List';
-import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
-import { ArticlesListResponse } from '../../features/blog/interfaces';
+import useQuery from '../../../features/shared/hooks/useQuery';
+import Layout from '../../../features/shared/layout/Layout';
+import AlertErrors from '../../../features/shared/molecules/AlertErrors/AlertErrors';
+import List from '../../../features/articles/templates/articles/List';
+import usePaginatedState from '../../../features/shared/hooks/usePaginatedState';
+import { ArticlesListResponse } from '../../../features/blog/interfaces';
 import { useSearchParams } from 'solid-app-router';
 
 const IndexPage: Component = () =>
